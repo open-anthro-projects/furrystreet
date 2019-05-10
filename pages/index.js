@@ -1,4 +1,12 @@
 import React, { Component } from 'react';
+import Link from 'next/link'
+
+import Takuma from "../static/Takuma.jpeg"
+import Yokai from "../static/yokai.png"
+import Kaoru from "../static/kaoru.png"
+import Icon from "../static/icon.png"
+import Come from "../static/come.jpg"
+import Ninja from "../static/ninja.png"
 
 class Index extends Component {
 
@@ -15,130 +23,54 @@ class Index extends Component {
   render() {
     return (
   <>
-    <div className="nav">
-      <button className="material-icons md-light" onClick={(e) => this.handleNavButtonOnClick()}>
-        menu
-      </button>
-      <div>Navbar</div>
-    </div>
-
-    {this.state.menuVisible === true &&
-    <div id="left" className="column">
-        <div className="bottom">
-        <p>one</p>
-				<p>two</p>
-				<p>three</p>
-				<p>four</p>
-				<p>five</p>
-				<p>six</p>
-				<p>seven</p>
-				<p>eight</p>
-				<p>nine</p>
-				<p>ten</p>
-				<p>eleven</p>
-				<p>twelve</p>
-				<p>thirteen</p>
-				<p>fourteen</p>
-				<p>fifteen</p>
-				<p>sixteen</p>
-				<p>seventeen</p>
-				<p>eighteen</p>
-				<p>nineteen</p>
-				<p>twenty</p>
-				<p>twenty-one</p>
-				<p>twenty-two</p>
-				<p>twenty-three</p>
-				<p>twenty-four</p>
-				<p>twenty-five</p>
-				<p>twenty-six</p>
-				<p>twenty-seven</p>
-				<p>twenty-eight</p>
-				<p>twenty-nine</p>
-				<p>thirty</p>
-        </div>
-    </div>
-    }
-    <div id="right" className="column">
-        <div className="bottomright">
+    <div id="right" className="content">
+    <span className="contentheader">Recent Artwork</span>
         <div className="cp">
-        <div className="cptest">one</div>
-        <div className="cptest">one</div>
-        <div className="cptest">one</div>
-        <div className="cptest">one</div>
-        <div className="cptest">one</div>
-        <div className="cptest">one</div>
-        <div className="cptest">one</div>
-        <div className="cptest">one</div>
-        <div className="cptest">one</div>
-        <div className="cptest">one</div>
-        <div className="cptest">one</div>
-        <div className="cptest">one</div>
-				<p>two</p>
-				<p>three</p>
-				<p>four</p>
-				<p>five</p>
-				<p>six</p>
-				<p>seven</p>
-				<p>eight</p>
-				<p>nine</p>
-				<p>ten</p>
-				<p>eleven</p>
-				<p>twelve</p>
-				<p>thirteen</p>
-				<p>fourteen</p>
-				<p>fifteen</p>
-				<p>sixteen</p>
+        
+        <Link href={{ pathname: '/artwork', query: { id: '2' } }} as='/artwork/2/Yokai-Takuma'>
+        <a><figure className="cptest"><img className="cptestImage" src={Yokai}></img><div className="img__description"><figcaption className="info"><span className="title">Yokai Takuma</span><span className="sub-title">by TV_thari</span></figcaption></div></figure></a>
+        </Link>
+        <figure className="cptest"><img className="cptestImage" src={Come}></img><div className="img__description"><figcaption className="info"><span className="title">Yokai Takuma</span><span className="sub-title">by TV_thari</span></figcaption></div></figure>
+        <figure className="cptest"><img className="cptestImage" src={Takuma}></img><div className="img__description"><figcaption className="info"><span className="title">Yokai Takuma</span><span className="sub-title">by TV_thari</span></figcaption></div></figure>
+        <figure className="cptest"><img className="cptestImage" src={Kaoru}></img><div className="img__description"><figcaption className="info"><span className="title">Yokai Takuma</span><span className="sub-title">by TV_thari</span></figcaption></div></figure>
+        <figure className="cptest"><img className="cptestImage" src={Ninja}></img><div className="img__description"><figcaption className="info"><span className="title">Yokai Takuma</span><span className="sub-title">by TV_thari</span></figcaption></div></figure>
+        <figure className="cptest"><img className="cptestImage" src={Come}></img><div className="img__description"><figcaption className="info"><span className="title">Yokai Takuma</span><span className="sub-title">by TV_thari</span></figcaption></div></figure>
+        <figure className="cptest"><img className="cptestImage" src={Icon}></img><div className="img__description"><figcaption className="info"><span className="title">Yokai Takuma</span><span className="sub-title">by TV_thari</span></figcaption></div></figure>
+        <div className="cptest"><img className="cptestImage" src={Kaoru}></img></div>
+        <div className="cptest"><img className="cptestImage" src={Takuma}></img></div>
+        <div className="cptest"><img className="cptestImage" src={Yokai}></img></div>
+        <figure className="cptest"><img className="cptestImage" src={Come}></img><div className="img__description"><figcaption className="info"><span className="title">Yokai Takuma</span><span className="sub-title">by TV_thari</span></figcaption></div></figure>
+        <div className="cptest"><img className="cptestImage" src={Ninja}></img></div>
+        
         </div>
-        <p>one</p>
-				<p>two</p>
-				<p>three</p>
-				<p>four</p>
-				<p>five</p>
-				<p>six</p>
-				<p>seven</p>
-				<p>eight</p>
-				<p>nine</p>
-				<p>ten</p>
-				<p>eleven</p>
-				<p>twelve</p>
-				<p>thirteen</p>
-				<p>fourteen</p>
-				<p>fifteen</p>
-				<p>sixteen</p>
-				<p>seventeen</p>
-				<p>eighteen</p>
-				<p>nineteen</p>
-				<p>twenty</p>
-				<p>twenty-one</p>
-				<p>twenty-two</p>
-				<p>twenty-three</p>
-				<p>twenty-four</p>
-				<p>twenty-five</p>
-				<p>twenty-six</p>
-				<p>twenty-seven</p>
-				<p>twenty-eight</p>
-				<p>twenty-nine</p>
-				<p>thirty</p>
+
+      <span className="contentheader">Recent Offers</span>  
+        <div className="cp">
+        <div className="cptest"><img className="cptestImage" src={Yokai}></img></div>
+        <div className="cptest"><img className="cptestImage" src={Come}></img></div>
+        <div className="cptest"><img className="cptestImage" src={Takuma}></img></div>
+        <div className="cptest"><img className="cptestImage" src={Kaoru}></img></div>
+        <div className="cptest"><img className="cptestImage" src={Ninja}></img></div>
+        <div className="cptest"><img className="cptestImage" src={Come}></img></div>
+        <div className="cptest"><img className="cptestImage" src={Icon}></img></div>
+        <div className="cptest"><img className="cptestImage" src={Kaoru}></img></div>
+        <div className="cptest"><img className="cptestImage" src={Takuma}></img></div>
+        <div className="cptest"><img className="cptestImage" src={Yokai}></img></div>
+        <div className="cptest"><img className="cptestImage" src={Come}></img></div>
+        <div className="cptest"><img className="cptestImage" src={Ninja}></img></div>
         </div>
     </div>
-
-    
-
 
   <style jsx global>{`
-  body {
-    background-color: hsl(0, 0%, 7%);
-    height: 100%;
-    overflow: hidden;  /*makes the body non-scrollable (we will add scrolling to the sidebar and main content containers)*/
-    margin: 0px;  /*removes default style*/
-    box-sizing: border-box;
-    width:100%;
-    padding-top: 56px;
-    color:hsl(60, 18%, 87%);
+  .navposition{
+    position: relative;
   }
-
+  `}</style>
+    
+  <style jsx>{`
   html {
     height: 100%;
+    font-family: Roboto, Arial, sans-serif;
   }
 
   #__next{
@@ -152,38 +84,99 @@ class Index extends Component {
     left: 0;
     
   }
-  
-  .column {
-    height: 100%;  /*allows both columns to span the full height of the browser window*/
-    display: flex;
-    flex-direction: column;  /*places the left and right headers above the bottom content*/
-    width: 100%;
-    
 
-}
+.content {
+  padding-top:16px;
+  height: 100%;  /*allows both columns to span the full height of the browser window*/
+  display: flex;
+  flex-direction: column;  /*places the left and right headers above the bottom content*/
+  width: 100%;
+  -ms-flex: 1 1 0.000000001px;
+  -webkit-flex: 1;
+  flex: 1;
+  -webkit-flex-basis: 0.000000001px;
+  flex-basis: 0.000000001px;
+  flex-grow: 1;  /*ensures that the container will take up the full height of the parent container*/
+  overflow-y: auto;  /*adds scroll to this container*/
+
+  }
 
 .cp{
-  width: 83.33333333333333%;
-  margin:auto;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .cptest {
-  width: 20%;
+  margin-right: 16px;
+  margin-left:16px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  position: relative;  
+}
+
+.cptest:hover .img__description {
+  visibility: visible;
+  opacity: 1;
+}
+
+.cptestImage {
+  max-height:250px;
+  min-height:250px;
+}
+
+.img__description {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+  margin:0px;
+  align-self:flex-end;
+  display: flex;
+    align-items: flex-end;
+  max-height:250px;
+  min-height:250px;
+  vertical-align: bottom;
+  /* transition effect. not necessary */
+  transition: opacity .2s, visibility .2s;
+}
+
+.info {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 40px;
+  padding-bottom: 3px;
+  background: linear-gradient(rgba(5,6,6,0),rgba(5,6,6,.95));
+  width:100%;
+}
+
+.title{
+  font-family: open_sans_bold,Helvetica Neue,Helvetica,Arial,sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  text-shadow: 2px 2px 3px rgba(5,6,6,.5);
+}
+
+.sub-title {
+  display: block;
+  font-size: .75rem;
+  font-family: open_sans_bold,Helvetica Neue,Helvetica,Arial,sans-serif;
+  margin-bottom: .25rem;
 }
 
 #right {
   flex-shrink: 0; 
-  justify-content: center;
 }
 
 #left {
     flex-shrink: 0;  /*makes sure that content is not cut off in a smaller browser window*/
     z-index: 1030;
-    position: fixed;
-    width: 240px;
+    width:240px;
     background-color: hsl(0, 0%, 11%);
 }
 
@@ -207,12 +200,13 @@ ul {
     
 }
 
-.bottomright {
-  flex-grow: 1;  /*ensures that the container will take up the full height of the parent container*/
-  overflow-y: auto;  /*adds scroll to this container*/
-  text-align: center;
-  align-items: center;
-  justify-content: center;
+.contentheader{
+  max-height: 2rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 2rem;
+  margin:auto;
+  color:#ffffff;
 }
 
 
@@ -248,19 +242,10 @@ height: 100%;
     z-index: 1030;
 }
 
-.content {
-  background: hsl(0, 0%, 11%);
-  -ms-flex: 1 1 0.000000001px;
-  -webkit-flex: 1;
-  flex: 1;
-  -webkit-flex-basis: 0.000000001px;
-  flex-basis: 0.000000001px;
-  display: flex;
-  -ms-flex-direction: column;
-  -webkit-flex-direction: column;
-  flex-direction: column;
-  z-index: 1030;
+.imagetest{
+  height:100%;
 }
+
 
 .item{
   display: flex;
@@ -314,62 +299,6 @@ height: 100%;
     width: 240px;
   }
 
-  .nav {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 1030;
-    background: #272727;
-    height: 56px;
-    padding: 0 16px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-
-  @font-face {
-    font-family: 'Material Icons';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Material Icons'),
-      local('MaterialIcons-Regular'),
-      url(/static/MaterialIcons-Regular.woff) format('woff');
-  }
-
-  .material-icons {
-    font-family: 'Material Icons';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px;  /* Preferred icon size */
-    display: inline-block;
-    line-height: 1;
-    text-transform: none;
-    letter-spacing: normal;
-    word-wrap: normal;
-    white-space: nowrap;
-    direction: ltr;
-    background: none;
-    border: none;
-    padding: 0;
-  
-    /* Support for all WebKit browsers. */
-    -webkit-font-smoothing: antialiased;
-    /* Support for Safari and Chrome. */
-    text-rendering: optimizeLegibility;
-  
-    /* Support for Firefox. */
-    -moz-osx-font-smoothing: grayscale;
-  
-    /* Support for IE. */
-    font-feature-settings: 'liga';
-  }
-  .material-icons.md-light { color: #ffffff; }
-
-
-  .material-icons :focus {
-    outline: 0px;
-}
 `}</style>
 </>
 )}}
