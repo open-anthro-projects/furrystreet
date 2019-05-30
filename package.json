@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/open-anthro-projects/community-website-alpha#readme",
   "dependencies": {
-    "express": "^4.16.4",
+    "express": "^4.17.1",
     "next": "^8.1.0",
     "next-fonts": "^0.17.0",
     "next-images": "^1.1.1",

@@ -71,6 +71,7 @@ class Index extends Component {
   html {
     height: 100%;
     font-family: Roboto, Arial, sans-serif;
+    width: 100%;
   }
 
   #__next{
@@ -82,7 +83,7 @@ class Index extends Component {
     top: 0;
     right: 0;
     left: 0;
-    
+    flex:1;
   }
 
 .content {
@@ -106,6 +107,7 @@ class Index extends Component {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  flex: 1;
 }
 
 .cptest {
@@ -114,6 +116,7 @@ class Index extends Component {
   margin-top: 16px;
   margin-bottom: 16px;
   position: relative;  
+  min-width: auto;
 }
 
 .cptest:hover .img__description {

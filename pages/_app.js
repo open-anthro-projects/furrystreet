@@ -61,6 +61,9 @@ class Layout extends React.Component {
     width:100%;
     padding-top: 56px;
     color:hsl(60, 18%, 87%);
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
   }
 
   html {
