@@ -15,7 +15,7 @@ class Artwork extends Component {
       <div className="container">
         <div className="content">
           <figure className="test">
-            <img className="imagetest" src={Kaoru}></img>
+            <img className="imagetest" src={Yokai}></img>
          </figure>
         </div>
       
@@ -101,6 +101,7 @@ class Artwork extends Component {
 
 figure{
   margin: 0px;
+  max-height:calc(100vh - 88px);
 }
 
 .content{
@@ -125,6 +126,7 @@ figure{
 
 .content{
   margin-top: 1em;
+  margin-bottom: 1em;
   grid-column: 1 / 17;
 }
 

@@ -125,8 +125,8 @@ class Index extends Component {
 }
 
 .cptestImage {
+  max-width:calc(100vw - 32px); 
   max-height:250px;
-  min-height:250px;
 }
 
 .img__description {
