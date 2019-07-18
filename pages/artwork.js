@@ -4,6 +4,7 @@ import Kaoru from "../static/kaoru.png"
 import Test from "../static/test.png"
 import Test3 from "../static/test3.png"
 import ad300250 from "../static/ad300250.png"
+import icon from "../static/kemukujara-1992.gif"
 
 class Artwork extends Component {
   static getInitialProps ({ query: { id } }) {
@@ -22,66 +23,62 @@ class Artwork extends Component {
       <div className="sidecolumn">
         <div className="side">
         <img className="adtest" src={ad300250}></img>
-				<p>five</p>
-				<p>six</p>
-				<p>seven</p>
-				<p>eight</p>
-				<p>nine</p>
-				<p>ten</p>
-				<p>eleven</p>
-				<p>twelve</p>
-				<p>thirteen</p>
-				<p>fourteen</p>
-				<p>fifteen</p>
-				<p>sixteen</p>
-				<p>seventeen</p>
-				<p>eighteen</p>
-				<p>nineteen</p>
-				<p>twenty</p>
-				<p>twenty-one</p>
-				<p>twenty-two</p>
-				<p>twenty-three</p>
-				<p>twenty-four</p>
-				<p>twenty-five</p>
-				<p>twenty-six</p>
-				<p>twenty-seven</p>
-				<p>twenty-eight</p>
-				<p>twenty-nine</p>
-				<p>thirty</p>
-        <p>five</p>
-				<p>six</p>
-				<p>seven</p>
-				<p>eight</p>
-				<p>nine</p>
-				<p>ten</p>
-				<p>eleven</p>
-				<p>twelve</p>
-				<p>thirteen</p>
-				<p>fourteen</p>
-				<p>fifteen</p>
-				<p>sixteen</p>
-				<p>seventeen</p>
-				<p>eighteen</p>
-				<p>nineteen</p>
-				<p>twenty</p>
-				<p>twenty-one</p>
-				<p>twenty-two</p>
-				<p>twenty-three</p>
-				<p>twenty-four</p>
-				<p>twenty-five</p>
-				<p>twenty-six</p>
-				<p>twenty-seven</p>
-				<p>twenty-eight</p>
-				<p>twenty-nine</p>
-				<p>thirty</p>
+			
         </div>
       </div>
 
-      <div className="title">
-      <h1>{this.props.postId}</h1>
+      <div className="primary-info">
+      <h1>Yokai Takuma</h1>
+      <div className="info">
+        <div className="views">
+          0 views
+        </div>
+        <div className="favorite">
+          <li className="material-icons md-grey articon">
+            favorite
+          </li>
+          <div className="favcounter">
+          0
+          </div>
+        </div>
+        <div className="favorite">
+          <li className="material-icons md-grey articon">
+            share
+          </li>
+          <div className="favcounter">
+          Share
+          </div>
+        </div>
+        <div className="favorite">
+          <li className="material-icons md-grey articon">
+          remove_circle
+          </li>
+          <div className="favcounter">
+          Request takedown
+          </div>
+          
+        </div>
+        <div className="favorite">
+        <li className="material-icons md-grey articon">
+          report
+          </li>
+          <div className="favcounter">
+          Report problem
+          </div>
+          </div>
+
+
+      </div>
       </div>
 
-      </div> 
+      <div className="primary-info">
+        <h2>Artist:</h2>
+        <h2>TV_Thari</h2>
+        <h2>Featuring:</h2>
+        <div>Takuma from <img className="avatar" src={icon}></img> Kemukujara-1992</div>
+      </div>
+
+      </div>
 
       <style jsx global>{`
   .navposition{
@@ -94,10 +91,17 @@ class Artwork extends Component {
   display: grid;
   width:100%;
   overflow-y: auto;
-  grid-template-columns: repeat(20, 1fr);
+  grid-template-columns: 16px auto 16px;
   grid-template-rows: repeat(20, auto);
   grid-auto-flow: row;
 }
+
+.avatar{
+  width:50px;
+  height:50px;
+}
+
+.material-icons.md-grey { color: #aaaaaa; }
 
 figure{
   margin: 0px;
@@ -105,21 +109,81 @@ figure{
 }
 
 .content{
-  grid-column: 1 / 21;
+  grid-column: 1 / 4;
   text-align:center;
   margin-left: auto;
   margin-right: auto;
   order:1;
 }
 
-.title{
-  grid-column: 1 / 21;
+.articon {
+  position: relative;
+  /* Adjust these values accordingly */
+  top: 3px;
+  left: 3px;
+  font-size: 20px;
+  padding-right: 8px;
+}
+
+
+.favcounter{
+  display: inline-block;
+}
+
+.primary-info{
+  grid-column:  2 / 3;
   order:2;
+  border-bottom: 1px solid #2a2a2a;
+  padding-bottom: 8px;
+}
+
+h1{
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin:0px;
+  padding-top: 16px;
+}
+
+h2{
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 400;
+  margin:0px;
+  padding-top: 16px;
+}
+
+h3{
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 400;
+  margin:0px;
+  padding-top: 16px;
+}
+
+.info{
+  width:100%;
+  display: flex;
+  flex-direction: row;
+  color:#aaaaaa;
+  font-size: 1.1rem;
+  line-height: 2rem;
+
+}
+
+.favorite{
+  flex:1;
+  justify-self: flex-end;  
+}
+
+.views{
+  flex:1;
+  font-weight: 400;
 }
 
 @media (min-width: 1025px) {
 .container {
-  grid-template-columns: repeat(16, 1fr) repeat(4, 80px);
+  grid-template-columns: 16px repeat(14, auto) 16px repeat(4, 80px);
   grid-template-rows: repeat(20, auto);
   grid-auto-flow: row;
 }
@@ -130,8 +194,13 @@ figure{
   grid-column: 1 / 17;
 }
 
-.title {
-  grid-column: 1 / 17;
+.primary-info {
+  grid-column: 2 / 16;
+  border-top: 1px solid #2a2a2a;
+}
+
+h1{
+  padding-top: 16px;
 }
 
 }
@@ -227,8 +296,7 @@ figure{
   height: 100%;  /*allows both columns to span the full height of the browser window*/
   display: flex;
   flex-direction: column;  /*places the left and right headers above the bottom content*/
-  background-color:hsl(0, 0%, 11%);
-  grid-column: 1 / 21;
+  grid-column: 2 / 3;
   order:3;
 }
 

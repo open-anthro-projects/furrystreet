@@ -119,15 +119,6 @@ class Layout extends React.Component {
   margin-right: 24px;
 }
 
-.info {
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 40px;
-  padding-bottom: 3px;
-  background: linear-gradient(rgba(5,6,6,0),rgba(5,6,6,.95));
-  width:100%;
-}
-
 .title{
   font-family: open_sans_bold,Helvetica Neue,Helvetica,Arial,sans-serif;
   font-size: 1.125rem;
