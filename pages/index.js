@@ -23,7 +23,8 @@ class Index extends Component {
   render() {
     return (
   <>
-    <div id="right" className="content">
+  <div className="pageContent">
+    <div className="content">
     <span className="contentheader">Recent Artwork</span>
         <div className="cp">
         
@@ -43,7 +44,8 @@ class Index extends Component {
         <div className="cptest"><img className="cptestImage" src={Ninja}></img></div>
         
         </div>
-
+      </div>  
+      <div id="right" className="content">
       <span className="contentheader">Recent Offers</span>  
         <div className="cp">
         <div className="cptest"><img className="cptestImage" src={Yokai}></img></div>
@@ -59,7 +61,26 @@ class Index extends Component {
         <div className="cptest"><img className="cptestImage" src={Come}></img></div>
         <div className="cptest"><img className="cptestImage" src={Ninja}></img></div>
         </div>
-    </div>
+      </div>
+  
+      <div id="right" className="content">
+    <span className="contentheader">Recent Offers</span>  
+        <div className="cp">
+        <div className="cptest"><img className="cptestImage" src={Yokai}></img></div>
+        <div className="cptest"><img className="cptestImage" src={Come}></img></div>
+        <div className="cptest"><img className="cptestImage" src={Takuma}></img></div>
+        <div className="cptest"><img className="cptestImage" src={Kaoru}></img></div>
+        <div className="cptest"><img className="cptestImage" src={Ninja}></img></div>
+        <div className="cptest"><img className="cptestImage" src={Come}></img></div>
+        <div className="cptest"><img className="cptestImage" src={Icon}></img></div>
+        <div className="cptest"><img className="cptestImage" src={Kaoru}></img></div>
+        <div className="cptest"><img className="cptestImage" src={Takuma}></img></div>
+        <div className="cptest"><img className="cptestImage" src={Yokai}></img></div>
+        <div className="cptest"><img className="cptestImage" src={Come}></img></div>
+        <div className="cptest"><img className="cptestImage" src={Ninja}></img></div>
+        </div>
+        </div>
+      </div>
 
   <style jsx global>{`
   .navposition{
@@ -88,7 +109,6 @@ class Index extends Component {
 
 .content {
   padding-top:16px;
-  height: 100%;  /*allows both columns to span the full height of the browser window*/
   display: flex;
   flex-direction: column;  /*places the left and right headers above the bottom content*/
   width: 100%;
@@ -99,15 +119,52 @@ class Index extends Component {
   flex-basis: 0.000000001px;
   flex-grow: 1;  /*ensures that the container will take up the full height of the parent container*/
   overflow-y: auto;  /*adds scroll to this container*/
+  }
+
+  
+
+  .pageContent{
+    overflow-y: auto;  /*adds scroll to this container*/
+    height: 100%;
+
+    flex-direction: column;  /*places the left and right headers above the bottom content*/
+    width: 100%;
+    -ms-flex: 1 1 0.000000001px;
+    -webkit-flex: 1;
+    flex: 1;
+    -webkit-flex-basis: 0.000000001px;
+    flex-basis: 0.000000001px;
+    flex-grow: 1;  /*ensures that the container will take up the full height of the parent container*/
 
   }
 
 .cp{
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
   flex: 1;
+  
+}
+
+@media (min-width: 1025px) {
+  .cp{
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .content {
+    overflow-x: auto;  /*adds scroll to this container*/
+  }
+}
+
+@media (max-width: 1024px) {
+  .cp{
+    
+  }
+
+  .content{
+    overflow-y: auto;
+    overflow-x: auto;  
+  }
 }
 
 .cptest {
