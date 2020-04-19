@@ -1,8 +1,8 @@
 import React from 'react'
-import Link from 'next/link'
+import Link from '../components/nextjs/Link'
 
 const links = [
-  { href: 'https://github.com/segmentio/create-next-app', label: 'Github' }
+  { href: '/', label: 'Github' }
 ].map(link => {
   link.key = `nav-link-${link.href}-${link.label}`
   return link
@@ -12,15 +12,15 @@ const Nav = () => (
   <nav>
     <ul>
       <li>
-        <Link prefetch href="/">
-          <a>Home</a>
+        <Link href="/">
+          Home
         </Link>
       </li>
       <ul>
         {links.map(({ key, href, label }) => (
           <li key={key}>
             <Link href={href}>
-              <a>{label}</a>
+              {label}
             </Link>
           </li>
         ))}
@@ -46,11 +46,6 @@ const Nav = () => (
       li {
         display: flex;
         padding: 6px 8px;
-      }
-      a {
-        color: #067df7;
-        text-decoration: none;
-        font-size: 13px;
       }
     `}</style>
   </nav>
