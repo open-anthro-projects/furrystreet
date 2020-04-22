@@ -6,9 +6,12 @@ import grey from '@material-ui/core/colors/grey';
 
 const theme = createMuiTheme({
     palette: {
-      primary: grey,  
-      type: 'dark',
-    },
+      primary: {
+        main: '#fffffa',
+        dark: '#f9f9f9',
+        contrastText: '#000000',
+      },  
+    }
   });
 
 class MyApp extends App {
