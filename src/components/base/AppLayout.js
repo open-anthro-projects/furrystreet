@@ -1,0 +1,88 @@
+import { AppBar } from '@material-ui/core'
+import { Toolbar } from '@material-ui/core'
+import IconButton from '@material-ui/core/IconButton';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { Typography } from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
+import Link from '../nextjs/Link'
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import { makeStyles } from '@material-ui/core/styles';
+
+const drawerWidth = 240;
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+  },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  drawerContainer: {
+    overflow: 'auto',
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+  },
+}));
+
+  const AppLayout = ({ children }) => {
+    const classes = useStyles();
+    const [state, setState] = React.useState({
+      left: false,
+    });
+  
+    const toggleDrawer = (anchor, open) => (event) => {
+      if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+        return;
+      }
+  
+      setState({ ...state, [anchor]: open });
+    };
+
+    return (
+      <div className={classes.root}>
+      <CssBaseline/>
+      <AppBar position="static" className={classes.appBar}>
+        <Toolbar> 
+          <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer('left',!state['left'])}>
+            <MenuIcon />
+          </IconButton>
+          <Typography variant='h6'>
+            ...
+          </Typography>
+        </Toolbar>
+      </AppBar>
+          <SwipeableDrawer
+            anchor={'left'}
+            open={state['left']}
+            onClose={toggleDrawer('left', false)}
+            onOpen={toggleDrawer('left', true)}
+            className={classes.drawer}
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+          >
+            <AppBar position="sticky" className={classes.appBar}>
+        <Toolbar> 
+          <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer('left',!state['left'])}>
+            <MenuIcon />
+          </IconButton>
+          <Typography variant='h6'>
+            ...
+          </Typography>
+        </Toolbar>
+      </AppBar>
+       </SwipeableDrawer>
+        <div className="content-wrapper">{children}</div>
+      </div>
+    )};
+    
+  export default AppLayout;
