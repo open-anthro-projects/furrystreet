@@ -7,6 +7,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Link from '../nextjs/Link'
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import { makeStyles } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
+import { DefaultTheme } from './DefaultTheme'
 
 const drawerWidth = 240;
 
@@ -48,9 +50,10 @@ const useStyles = makeStyles((theme) => ({
     };
 
     return (
+      <ThemeProvider theme={DefaultTheme}>
       <div className={classes.root}>
       <CssBaseline/>
-      <AppBar position="static" className={classes.appBar}>
+      <AppBar position="fixed" className={classes.appBar} elevation={1}>
         <Toolbar> 
           <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer('left',!state['left'])}>
             <MenuIcon />
@@ -70,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
               paper: classes.drawerPaper,
             }}
           >
-            <AppBar position="sticky" className={classes.appBar}>
+            <AppBar position="sticky" className={classes.appBar} elevation={1}>
         <Toolbar> 
           <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer('left',!state['left'])}>
             <MenuIcon />
@@ -81,8 +84,9 @@ const useStyles = makeStyles((theme) => ({
         </Toolbar>
       </AppBar>
        </SwipeableDrawer>
-        <div className="content-wrapper">{children}</div>
+        {children}
       </div>
+      </ThemeProvider>
     )};
     
   export default AppLayout;
