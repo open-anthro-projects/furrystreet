@@ -1,5 +1,5 @@
 import React from 'react'
-import { AppBar } from '@material-ui/core'
+import { AppBar, Paper } from '@material-ui/core'
 import Link from '../components/nextjs/Link'
 import Head from '../components/base/head'
 import Nav from '../components/nav'
@@ -8,6 +8,8 @@ import { Typography } from '@material-ui/core';
 import { Toolbar } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import { useTheme } from '@material-ui/core/styles';
+
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -15,9 +17,21 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3),
   },
   appBar: {
-    zIndex: theme.zIndex.drawer+1,
-    top: theme.mixins.toolbar.minHeight,
+    top: 56, 
+   [`${theme.breakpoints.up('xs')} and (orientation: landscape)`]: { 
+    top: 48, 
+   }, 
+   [theme.breakpoints.up('sm')]: { 
+    top: 64, 
+   },
+    backgroundColor: theme.palette.primary.main,
   },
+  title:{
+    backgroundColor: theme.palette.primary.main,
+  },
+  content:{
+    backgroundColor: theme.palette.primary.dark,
+  }
 }));
 
 const image = {
@@ -31,8 +45,8 @@ const image = {
 const Home = () => {
   const classes = useStyles();
 
-
 return (
+  <>
   <Grid
   container
   direction="column"
@@ -41,17 +55,17 @@ return (
   >
     <Head title="FurryStreet - PostOffice"></Head>
       <Toolbar />
-      <Grid item>
+      <Grid item className={classes.title}>
         <img style={image} src="/test.jpg" alt="my image" />
       </Grid>
-      <AppBar position="sticky" className={classes.appBar} elevation={1}>
+      <AppBar position="sticky" className={classes.appBar} elevation={1} color="default">
         <Toolbar> 
           <Typography variant='h6'>
             ...
           </Typography>
         </Toolbar>
       </AppBar>
-      <Grid item>
+      <Grid item className={classes.content}>
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
@@ -65,7 +79,7 @@ return (
           donec massa sapien faucibus et molestie ac.
         </Typography>
       </Grid>
-      <Grid item>
+      <Grid item className={classes.content}>
         <Typography paragraph>
           Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
           facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
@@ -78,7 +92,7 @@ return (
           accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
       </Grid>
-      <Grid item>
+      <Grid item className={classes.content}>
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
@@ -92,7 +106,7 @@ return (
           donec massa sapien faucibus et molestie ac.
         </Typography>
       </Grid>
-      <Grid item>
+      <Grid item className={classes.content}>
         <Typography paragraph>
           Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
           facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
@@ -105,7 +119,7 @@ return (
           accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
       </Grid>
-      <Grid item>
+      <Grid item className={classes.content}>
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
@@ -119,7 +133,7 @@ return (
           donec massa sapien faucibus et molestie ac.
         </Typography>
       </Grid>
-      <Grid item>
+      <Grid item className={classes.content}>
         <Typography paragraph>
           Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
           facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
@@ -132,7 +146,7 @@ return (
           accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
       </Grid>
-      <Grid item>
+      <Grid item className={classes.content}>
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
@@ -146,7 +160,7 @@ return (
           donec massa sapien faucibus et molestie ac.
         </Typography>
       </Grid>
-      <Grid item>
+      <Grid item className={classes.content}>
         <Typography paragraph>
           Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
           facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
@@ -159,7 +173,7 @@ return (
           accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
       </Grid>
-      <Grid item>
+      <Grid item className={classes.content}>
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
@@ -173,7 +187,7 @@ return (
           donec massa sapien faucibus et molestie ac.
         </Typography>
       </Grid>
-      <Grid item>
+      <Grid item className={classes.content}>
         <Typography paragraph>
           Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
           facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
@@ -187,6 +201,8 @@ return (
         </Typography>
       </Grid>
     </Grid>
+  
+    </>
 )};
 
 export default Home

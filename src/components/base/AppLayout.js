@@ -1,4 +1,4 @@
-import { AppBar } from '@material-ui/core'
+import { AppBar, formatMs } from '@material-ui/core'
 import { Toolbar } from '@material-ui/core'
 import IconButton from '@material-ui/core/IconButton';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -7,8 +7,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Link from '../nextjs/Link'
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import { makeStyles } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/core/styles';
-import { DefaultTheme } from './DefaultTheme'
+
+
+import {Switch , FormControlLabel} from '@material-ui/core';
 
 const drawerWidth = 240;
 
@@ -18,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
+    backgroundColor: theme.palette.primary.light,
   },
   drawer: {
     width: drawerWidth,
@@ -35,8 +37,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-  const AppLayout = ({ children }) => {
+  const AppLayout = ({ themeSwitch,children }) => {
     const classes = useStyles();
+   
     const [state, setState] = React.useState({
       left: false,
     });
@@ -50,10 +53,10 @@ const useStyles = makeStyles((theme) => ({
     };
 
     return (
-      <ThemeProvider theme={DefaultTheme}>
+   
       <div className={classes.root}>
       <CssBaseline/>
-      <AppBar position="fixed" className={classes.appBar} elevation={1}>
+      <AppBar position="fixed" className={classes.appBar} elevation={2} color="default">
         <Toolbar> 
           <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer('left',!state['left'])}>
             <MenuIcon />
@@ -61,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
           <Typography variant='h6'>
             ...
           </Typography>
+          <FormControlLabel control={<Switch onClick={themeSwitch}/>} />
         </Toolbar>
       </AppBar>
           <SwipeableDrawer
@@ -73,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
               paper: classes.drawerPaper,
             }}
           >
-            <AppBar position="sticky" className={classes.appBar} elevation={1}>
+            <AppBar position="sticky" className={classes.appBar} elevation={2} color="default">
         <Toolbar> 
           <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer('left',!state['left'])}>
             <MenuIcon />
@@ -86,7 +90,6 @@ const useStyles = makeStyles((theme) => ({
        </SwipeableDrawer>
         {children}
       </div>
-      </ThemeProvider>
     )};
     
   export default AppLayout;
