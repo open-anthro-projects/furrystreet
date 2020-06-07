@@ -1,20 +1,22 @@
 import React from 'react';
 import App from 'next/app';
-import AppLayout from '../components/base/AppLayout';
+import AppLayout from '../components/layouts/AppLayout';
 import PropTypes from 'prop-types';
-import { Theme } from '../components/base/Theme'
+import { AppTheme } from '../components/base/theme'
 import { ThemeProvider } from '@material-ui/core/styles';
+import DefaultLayout from '../components/layouts/DefaultLayout'
+import { AppProps } from 'next/app'
 
-export default function MyApp(props) {
-  const [theme, toggleDarkTheme] = Theme();
-  const { Component, pageProps} = props;
+export default function MyApp({ Component, pageProps }: AppProps) {
+  const [theme, toggleDarkTheme] = AppTheme();
+  const PageLayout = Component.Layout || DefaultLayout;
   
 
   React.useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
-      jssStyles.parentElement.removeChild(jssStyles);
+      jssStyles?.parentElement?.removeChild(jssStyles);
     }
   }, []);
     
@@ -22,7 +24,9 @@ export default function MyApp(props) {
     return ( 
       <ThemeProvider theme={theme}>
         <AppLayout themeSwitch={toggleDarkTheme}>
+          <PageLayout>
             <Component {...pageProps}/>
+          </PageLayout>
         </AppLayout>
         </ThemeProvider>);
 

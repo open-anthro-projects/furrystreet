@@ -1,5 +1,5 @@
 import React from 'react'
-import Link from '../components/nextjs/Link'
+import Link from './nextjs/link'
 
 const links = [
   { href: '/', label: 'Github' }

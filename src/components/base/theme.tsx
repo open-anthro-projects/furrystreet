@@ -13,7 +13,8 @@ const lightTheme = {
     },
     secondary: blue,
     background: {
-      paper: '#f9f9f9',
+      default:'#f9f9f9',
+      paper: '#faffff',
     }
   },
 };
@@ -27,7 +28,8 @@ const dark2Theme = {
     },
     secondary: blue,
     background:{
-      paper: '#181818',
+      default: '#181818',
+      paper: '#212121',
     },
     type: 'dark',
     },
@@ -50,7 +52,7 @@ const dark2Theme = {
   return [theme, toggleDarkTheme]
 }*/
 
-export const Theme = () => {
+export const AppTheme = () => {
   const [darkState, setDarkState] = useState(true);
   const palletType = darkState ? dark2Theme.palette : lightTheme.palette;
   const darkTheme = createMuiTheme({
@@ -60,6 +62,7 @@ export const Theme = () => {
   const handleThemeChange = () => {
     setDarkState(!darkState);
   };
-  
-  return [darkTheme, handleThemeChange]
+  let tuple: [any, any];
+  tuple = [darkTheme, handleThemeChange];
+  return tuple;
 }

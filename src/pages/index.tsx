@@ -1,6 +1,6 @@
 import React from 'react'
 import { AppBar, Paper } from '@material-ui/core'
-import Link from '../components/nextjs/Link'
+import Link from '../components/nextjs/link'
 import Head from '../components/base/head'
 import Nav from '../components/nav'
 import { Button }  from '@material-ui/core'
@@ -9,12 +9,14 @@ import { Toolbar } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { useTheme } from '@material-ui/core/styles';
-
+import Box from '@material-ui/core/Box';
+import PostOfficeLayout from '../components/layouts/PostOfficeLayout'
 
 const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
+    backgroundColor: theme.palette.primary.dark,
   },
   appBar: {
     top: 56, 
@@ -29,16 +31,9 @@ const useStyles = makeStyles((theme) => ({
   title:{
     backgroundColor: theme.palette.primary.main,
   },
-  content:{
-    backgroundColor: theme.palette.primary.dark,
-  }
 }));
 
-const image = {
-  height: 'calc(100vw / 6.2 - 1px)',
-  width: '100%',
-  objectFit: 'cover',
-}
+
 
 
 
@@ -47,24 +42,8 @@ const Home = () => {
 
 return (
   <>
-  <Grid
-  container
-  direction="column"
-  justify="center"
-  alignItems="stretch"
-  >
     <Head title="FurryStreet - PostOffice"></Head>
-      <Toolbar />
-      <Grid item className={classes.title}>
-        <img style={image} src="/test.jpg" alt="my image" />
-      </Grid>
-      <AppBar position="sticky" className={classes.appBar} elevation={1} color="default">
-        <Toolbar> 
-          <Typography variant='h6'>
-            ...
-          </Typography>
-        </Toolbar>
-      </AppBar>
+
       <Grid item className={classes.content}>
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -200,9 +179,9 @@ return (
           accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
       </Grid>
-    </Grid>
-  
     </>
 )};
+
+Home.Layout = PostOfficeLayout;
 
 export default Home

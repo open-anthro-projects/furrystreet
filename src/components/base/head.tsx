@@ -1,14 +1,21 @@
 import React from 'react'
 import NextHead from 'next/head'
 import { string } from 'prop-types'
-import { Theme } from '../base/Theme'
+import { AppTheme } from './theme'
 
 const defaultDescription = ''
 const defaultOGURL = ''
 const defaultOGImage = ''
 
-const Head = (props) => {
-  const [theme, toggleDarkTheme] = Theme();
+type Props = {
+  title?: string,
+  description?: string,
+  url?: string,
+  ogImage?: string
+}
+
+const Head = (props : Props) => {
+  const [theme, toggleDarkTheme] = AppTheme();
   
   return (
   <NextHead>
