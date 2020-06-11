@@ -9,6 +9,7 @@ import { AppProps } from 'next/app'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const [theme, toggleDarkTheme] = AppTheme();
+  //@ts-ignore
   const PageLayout = Component.Layout || DefaultLayout;
   
 
