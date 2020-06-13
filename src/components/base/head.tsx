@@ -20,7 +20,7 @@ const Head = (props : Props) => {
   return (
   <NextHead>
     <meta charSet="UTF-8" />
-    <title>{props.title || ''}</title>
+    <title>{props.title + ' - Furry Street' || 'Furry Street'}</title>
     <meta
       name="description"
       content={props.description || defaultDescription}
