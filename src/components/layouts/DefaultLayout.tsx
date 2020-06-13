@@ -17,4 +17,6 @@ const DefaultLayout = ({ children } : Props) => (
     </Grid>
   );
   
+  export const getLayout = (page: React.ReactNode) => <DefaultLayout>{page}</DefaultLayout>
+
   export default DefaultLayout;

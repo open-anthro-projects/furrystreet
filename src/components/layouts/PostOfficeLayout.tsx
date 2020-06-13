@@ -54,5 +54,6 @@ const useStyles = makeStyles((theme) => ({
     </Grid>
   )};
 
-  
+  export const getLayout = (page: React.ReactNode) => <PostOfficeLayout>{page}</PostOfficeLayout>;
+
   export default PostOfficeLayout;

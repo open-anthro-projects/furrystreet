@@ -1,10 +1,10 @@
 import React from 'react';
 import App from 'next/app';
-import AppLayout from '../components/layouts/AppLayout';
+import AppLayout from '../components/layouts/applayout';
 import PropTypes from 'prop-types';
 import { AppTheme } from '../components/base/theme'
 import { ThemeProvider } from '@material-ui/core/styles';
-import DefaultLayout from '../components/layouts/DefaultLayout'
+import DefaultLayout from '../components/layouts/defaultlayout'
 import { AppProps } from 'next/app'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -17,7 +17,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
-      jssStyles?.parentElement?.removeChild(jssStyles);
+      jssStyles.parentElement!.removeChild(jssStyles);
     }
   }, []);
     
