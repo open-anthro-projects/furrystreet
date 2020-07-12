@@ -38,7 +38,14 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  menuButton: {
+    marginRight: theme.spacing(1),
+  },
 }));
+
+const image = {
+  width: 151,
+}
 
   const AppLayout = ({ themeSwitch,children }: Props) => {
     const classes = useStyles();
@@ -61,13 +68,11 @@ const useStyles = makeStyles((theme) => ({
       <CssBaseline/>
       <AppBar position="fixed" className={classes.appBar} elevation={0} color="default">
         <Toolbar> 
-          <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer('left',!state['left'])}>
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={toggleDrawer('left',!state['left'])}>
             <MenuIcon />
           </IconButton>
-          <Typography variant='h6'>
-            ...
-          </Typography>
-          <FormControlLabel control={<Switch onClick={themeSwitch}/>} label="theme switch" />
+            <img style={image} src="/logo.png" alt="my image" />
+          
         </Toolbar>
       </AppBar>
           <SwipeableDrawer
@@ -82,14 +87,13 @@ const useStyles = makeStyles((theme) => ({
           >
             <AppBar position="sticky" className={classes.appBar} elevation={0} color="default">
         <Toolbar> 
-          <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer('left',!state['left'])}>
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={toggleDrawer('left',!state['left'])}>
             <MenuIcon />
           </IconButton>
-          <Typography variant='h6'>
-            ...
-          </Typography>
+          <img style={image} src="/logo.png" alt="my image" />
         </Toolbar>
       </AppBar>
+      <FormControlLabel control={<Switch onClick={themeSwitch}/>} label="theme switch" />
        </SwipeableDrawer>
         {children}
       </div>

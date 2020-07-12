@@ -7,14 +7,14 @@ import { blue } from '@material-ui/core/colors';
 const lightTheme = {
   palette: {
     primary: {
-      light: '#faffff',
+      light: '#ffffff',
       main: '#f9f9f9',
       dark: '#f1f1f1',
     },
     secondary: blue,
     background: {
       default:'#f9f9f9',
-      paper: '#faffff',
+      paper: '#fbfbfb',
     }
   },
 };
