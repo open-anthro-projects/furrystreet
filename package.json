@@ -1,6 +1,6 @@
 {
   "name": "furrystreet",
-  "engines" : { "node" : ">=12.18.2" },
+  "engines" : { "node" : "12.18.2" },
   "scripts": {
     "dev": "next",
     "build": "next build",
