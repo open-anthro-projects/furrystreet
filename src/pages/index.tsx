@@ -2,7 +2,6 @@ import React from 'react'
 import { AppBar, Paper } from '@material-ui/core'
 import Link from '../components/nextjs/link'
 import Head from '../components/base/head'
-import Nav from '../components/nav'
 import { Button }  from '@material-ui/core'
 import { Typography } from '@material-ui/core';
 import { Toolbar } from '@material-ui/core'
