@@ -8,8 +8,8 @@
     "npm": "6.x" 
   },
   "scripts": {
-    "heroku-postbuild": "next build",
     "dev": "next",
+    "build": "next build",
     "start": "next start"
   },
   "dependencies": {
