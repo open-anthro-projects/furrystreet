@@ -8,7 +8,7 @@
     "npm": "6.x" 
   },
   "scripts": {
-    "prestart": "next build",
+    "heroku-postbuild": "next build",
     "dev": "next",
     "start": "next start"
   },
