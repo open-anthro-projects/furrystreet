@@ -1,6 +1,12 @@
 {
   "name": "furrystreet",
-  "engines" : { "node" : "12.18.2" },
+  "description": "furry street website",
+  "version": "0.0.1",
+  "engines" : { 
+    "node" : "12.x",
+    "npm": "6.x" 
+  },
+  "cacheDirectories": [".next/cache"],
   "scripts": {
     "dev": "next",
     "build": "next build",
