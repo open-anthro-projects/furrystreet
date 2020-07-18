@@ -10,9 +10,7 @@
   "scripts": {
     "dev": "next",
     "start": "next start -p $PORT",
-    "build": "npm run build",
-    "local_build": "next build",
-    "local_start": "next start"
+    "build": "npm run build"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
