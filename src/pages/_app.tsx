@@ -7,7 +7,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import DefaultLayout from '../components/layouts/defaultlayout'
 import { AppProps } from 'next/app'
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps) {
   const [theme, toggleDarkTheme] = AppTheme();
   //@ts-ignore
   const PageLayout = Component.Layout || DefaultLayout;
@@ -38,6 +38,8 @@ MyApp.propTypes = {
   Component: PropTypes.elementType.isRequired,
   pageProps: PropTypes.object.isRequired,
 };
+
+export default MyApp;
 
 /*export default MyApp;
 
