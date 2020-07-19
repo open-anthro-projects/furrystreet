@@ -1,6 +1,6 @@
 import React from 'react';
 import App from 'next/app';
-import AppLayout from '../components/layouts/applayout';
+import AppLayout from '../../src/components/layouts/applayout';
 import PropTypes from 'prop-types';
 import { AppTheme } from '../components/base/theme'
 import { ThemeProvider } from '@material-ui/core/styles';
