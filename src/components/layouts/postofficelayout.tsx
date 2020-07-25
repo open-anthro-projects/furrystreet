@@ -6,6 +6,7 @@ import React, { ReactNode } from 'react'
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Link from '../nextjs/link';
+import { RSA_PSS_SALTLEN_AUTO } from 'constants';
 
 type Props = {
   children?: ReactNode
@@ -26,6 +27,8 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.primary.main,
     },
     container:{
+      minHeight: "100vh",
+      height: "100%",
       backgroundColor: theme.palette.primary.dark,
     },
     hover:{
@@ -60,11 +63,11 @@ const useStyles = makeStyles((theme) => ({
     <Grid
     container
     direction="column"
-    justify="center"
+    justify="flex-start"
     alignItems="stretch"
     className={classes.container}>
-        <Toolbar/>
-        <Grid item className={classes.cover_image}>
+      <Toolbar/>
+      <Grid item className={classes.cover_image}>
           <img style={image} src="/test.jpg" alt="my image" />
         </Grid>
         <AppBar position="sticky" className={classes.appBar} elevation={0} color="default">

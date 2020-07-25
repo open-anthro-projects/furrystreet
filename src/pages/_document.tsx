@@ -13,6 +13,15 @@ export default class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
+    <style global jsx>{`
+      html,
+      body,
+      body > div:first-child,
+      div#__next,
+      div#__next > div,
+      div#__next > div > div {
+        height: fit-content;
+    `}</style>
       </Html>
     );
   }

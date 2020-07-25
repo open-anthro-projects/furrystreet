@@ -14,7 +14,7 @@ const lightTheme = {
     secondary: blue,
     background: {
       default:'#f9f9f9',
-      paper: '#fbfbfb',
+      paper: '#ffffff',
     }
   },
 };
@@ -22,14 +22,14 @@ const lightTheme = {
 const dark2Theme = {
   palette: {
     primary:{
-      light: '#202020',
+      light: '#212121',
       main: '#181818',
       dark: '#0f0f0f',
     },
     secondary: blue,
     background:{
       default: '#181818',
-      paper: '#212121',
+      paper: '#181818',
     },
     type: 'dark',
     },

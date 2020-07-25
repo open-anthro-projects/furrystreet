@@ -10,8 +10,8 @@ const DefaultLayout = ({ children } : Props) => (
     <Grid
     container
     direction="column"
-    justify="center"
-    alignItems="stretch">
+    justify="flex-start"
+    alignItems="flex-start">
         <Toolbar/>
         {children}
     </Grid>
