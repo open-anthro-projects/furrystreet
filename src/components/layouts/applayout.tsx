@@ -8,6 +8,7 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import { makeStyles } from '@material-ui/core/styles';
 import React, { ReactNode } from 'react'
 import {Switch , FormControlLabel} from '@material-ui/core';
+import Brightness4Icon from '@material-ui/icons/Brightness4';
 
 const drawerWidth = 240;
 
@@ -41,10 +42,14 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(1),
   },
+  menuSide: {
+   flexGrow: 1
+  },
 }));
 
 const image = {
   width: 151,
+  "verticalAlign": "middle",
 }
 
   const AppLayout = ({ themeSwitch,children }: Props) => {
@@ -67,12 +72,16 @@ const image = {
       <div className={classes.root}>
       <CssBaseline/>
       <AppBar position="fixed" className={classes.appBar} elevation={0} color="default">
-        <Toolbar> 
+        <Toolbar>
+          <section className={classes.menuSide}> 
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={toggleDrawer('left',!state['left'])}>
             <MenuIcon />
           </IconButton>
             <img style={image} src="/logo.png" alt="my image" />
-          
+          </section>
+          <IconButton edge="start" color="inherit" aria-label="switch" onClick={themeSwitch}>
+            <Brightness4Icon />
+          </IconButton>
         </Toolbar>
       </AppBar>
           <SwipeableDrawer
@@ -93,7 +102,6 @@ const image = {
           <img style={image} src="/logo.png" alt="my image" />
         </Toolbar>
       </AppBar>
-      <FormControlLabel control={<Switch onClick={themeSwitch}/>} label="theme switch" />
        </SwipeableDrawer>
         {children}
       </div>
