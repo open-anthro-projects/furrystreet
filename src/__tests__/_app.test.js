@@ -9,7 +9,7 @@ let tempPageProps = {
 }
 
 describe("Furry Street App", () => {
-    it("renders without crashing", () => {
+    it("renders without crashing with HomePage", () => {
       render(<MyApp Component={Home} pageProps={tempPageProps} />);
       expect(
         screen.getByRole("button", { name: "menu" })
