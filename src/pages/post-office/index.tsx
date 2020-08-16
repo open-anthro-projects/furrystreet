@@ -1,7 +1,7 @@
 import React from 'react'
 import { AppBar, Paper } from '@material-ui/core'
-import Link from '../components/nextjs/link'
-import Head from '../components/base/head'
+import Link from '../../components/nextjs/link'
+import Head from '../../components/base/head'
 import { Button }  from '@material-ui/core'
 import { Typography } from '@material-ui/core';
 import { Toolbar } from '@material-ui/core'
@@ -9,7 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { useTheme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-import PostOfficeLayout from '../components/layouts/postofficelayout'
+import PostOfficeLayout from '../../components/layouts/postofficelayout'
 
 const useStyles = makeStyles((theme) => ({
   content: {

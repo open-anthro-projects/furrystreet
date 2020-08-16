@@ -14,13 +14,7 @@ type Props = {
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
-      top: 56, 
-     [`${theme.breakpoints.up('xs')} and (orientation: landscape)`]: { 
-      top: 48, 
-     }, 
-     [theme.breakpoints.up('sm')]: { 
-      top: 64, 
-     },
+      top: 0, 
       backgroundColor: theme.palette.primary.main,
     },
     cover_image:{
@@ -30,6 +24,17 @@ const useStyles = makeStyles((theme) => ({
       minHeight: "100vh",
       backgroundColor: theme.palette.primary.dark,
     },
+    toolbar: {
+      minHeight: 112, 
+     [`${theme.breakpoints.up('xs')} and (orientation: landscape)`]: { 
+      minHeight: 96, 
+     }, 
+     [theme.breakpoints.up('sm')]: { 
+      minHeight: 128, 
+     },
+      alignItems: 'flex-start',
+      flexWrap: 'wrap'
+    },
     hover:{
       // $disabled is a reference to the local disabled
       // rule within the same style sheet.
@@ -37,12 +42,35 @@ const useStyles = makeStyles((theme) => ({
       '&$hover:hover': {
       },
     },
+    tabs:{
+      display: 'flex',
+      flexGrow: 1,
+      flex: '0 0 100%'
+    },
+    title:{
+      minHeight: 56, 
+      [`${theme.breakpoints.up('xs')} and (orientation: landscape)`]: { 
+       minHeight: 48, 
+      }, 
+      [theme.breakpoints.up('sm')]: { 
+       minHeight: 64, 
+      },
+      display: 'flex',
+      alignItems: 'center',
+      flexGrow: 1,
+      flex: '0 0 100%',
+    }
   }));
 
-  const image = {
+  const cover_image = {
     height: 'calc(100vw / 6.2 - 1px)',
     width: '100%',
     objectFit: 'cover' as 'cover',
+  }
+
+  const page_image = {
+    width: 240,
+    "verticalAlign": "middle",
   }
 
   function a11yProps(index: any) {
@@ -67,14 +95,19 @@ const useStyles = makeStyles((theme) => ({
     className={classes.container}>
       <Toolbar/>
       <Grid item className={classes.cover_image}>
-          <img style={image} src="/test.jpg" alt="my image" />
+          <img style={cover_image} src="/test.jpg" alt="my image" />
         </Grid>
         <AppBar position="sticky" className={classes.appBar} elevation={0} color="default">
-            <Toolbar> 
-              <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-                <Tab label="Home" className={classes.hover} underline="none" {...a11yProps(0)} component={Link} href="/"/>
-                <Tab label="FAQ" className={classes.hover} underline="none" {...a11yProps(1)} component={Link} href="/faq"/>
+            <Toolbar className={classes.toolbar}> 
+            <div className={classes.title}>
+              <img style={page_image} src="/postofficelogo.png" alt="my image" />
+            </div>
+            <div className={classes.tabs}>
+              <Tabs value={value}  onChange={handleChange} aria-label="simple tabs example">
+                <Tab label="Home" className={classes.hover} underline="none" {...a11yProps(0)} component={Link} href="/post-office"/>
+                <Tab label="FAQ" className={classes.hover} underline="none" {...a11yProps(1)} component={Link} href="/post-office/faq"/>
               </Tabs>
+            </div>  
             </Toolbar>
         </AppBar>
           {children}
