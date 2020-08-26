@@ -5,6 +5,7 @@ import { AppTheme } from '../components/base/theme'
 import { ThemeProvider } from '@material-ui/core/styles';
 import DefaultLayout from '../components/layouts/defaultlayout';
 import { AppProps } from 'next/app';
+//@ts-ignore
 import { Provider } from 'next-auth/client';
 
 function MyApp({ Component, pageProps }: AppProps) {
