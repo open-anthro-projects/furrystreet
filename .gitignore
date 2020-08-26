@@ -611,5 +611,7 @@ healthchecksdb
 MigrationBackup/
 
 .next/
+.env
+.env.local
 
 # End of https://www.gitignore.io/api/node,linux,macos,windows,intellij+all,visualstudio

@@ -2,6 +2,7 @@ import Head from '../../components/base/head'
 import PostOfficeLayout from '../../components/layouts/postofficelayout'
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import { signIn, signOut, useSession } from 'next-auth/client'
 
 const useStyles = makeStyles((theme) => ({
     content: {
@@ -26,11 +27,20 @@ const useStyles = makeStyles((theme) => ({
 
 const Faq = () => {
     const classes = useStyles();
+    const [ session, loading ] = useSession()
     return (
       <>
         <Head title="FAQ"></Head>
         <Grid item className={classes.content}>
             <p>This is the Faq page</p>
+            {!session && <>
+            Not signed in <br/>
+            <button onClick={signIn}>Sign in</button>
+            </>}
+            {session && <>
+            Signed in as {session.user.email} <br/>
+            <button onClick={signOut}>Sign out</button>
+    </>}
         </Grid>
       </>
     );

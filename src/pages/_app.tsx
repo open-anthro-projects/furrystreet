@@ -1,11 +1,11 @@
 import React from 'react';
-import App from 'next/app';
 import AppLayout from '../../src/components/layouts/applayout';
 import PropTypes from 'prop-types';
 import { AppTheme } from '../components/base/theme'
 import { ThemeProvider } from '@material-ui/core/styles';
-import DefaultLayout from '../components/layouts/defaultlayout'
-import { AppProps } from 'next/app'
+import DefaultLayout from '../components/layouts/defaultlayout';
+import { AppProps } from 'next/app';
+import { Provider } from 'next-auth/client';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [theme, toggleDarkTheme] = AppTheme();
@@ -24,11 +24,13 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     return ( 
       <ThemeProvider theme={theme}>
-        <AppLayout themeSwitch={toggleDarkTheme}>
-          <PageLayout>
-            <Component {...pageProps}/>
-          </PageLayout>
-        </AppLayout>
+        <Provider session={pageProps.session}>
+          <AppLayout themeSwitch={toggleDarkTheme}>
+            <PageLayout>
+              <Component {...pageProps}/>
+            </PageLayout>
+          </AppLayout>
+        </Provider>
       </ThemeProvider>
     );
 
