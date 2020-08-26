@@ -3,7 +3,7 @@ import PostOfficeLayout from '../../components/layouts/postofficelayout'
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 //@ts-ignore
-import { signIn, signOut, useSession } from 'next-auth/client'
+import { signIn, signOut, useSession, getToken} from 'next-auth/client'
 
 const useStyles = makeStyles((theme) => ({
     content: {
