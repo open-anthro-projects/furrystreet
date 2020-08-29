@@ -9,6 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { useTheme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
+import { useSession } from 'next-auth/client'
 import PostOfficeLayout from '../../components/layouts/postofficelayout'
 
 const useStyles = makeStyles((theme) => ({
@@ -37,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
   const classes = useStyles();
+  const [ session, loading ] = useSession()
 
 return (
   <>
@@ -158,6 +160,15 @@ return (
           accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
       </Grid>
+
+     
+
+  
+<>
+    {session && <p>Signed in as {session.user.email}</p>}
+    {!session && <p><a href="/api/auth/signin">Sign in</a></p>}
+  </>
+
     </>
 )};
 
