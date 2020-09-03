@@ -4,9 +4,16 @@ import Providers from 'next-auth/providers'
 const options = {
     providers: [
         Providers.Email({
-            server: process.env.EMAIL_SERVER, 
-            from: process.env.EMAIL_FROM,
-        })
+          server: {
+            host: process.env.EMAIL_SERVER_HOST,
+            port: process.env.EMAIL_SERVER_PORT,
+            auth: {
+              user: process.env.EMAIL_SERVER_USER,
+              pass: process.env.EMAIL_SERVER_PASSWORD
+            }
+          },
+          from: process.env.EMAIL_FROM
+        }),
     ],
     database: process.env.DATABASE_URL,
 
@@ -22,7 +29,7 @@ const options = {
         jwt: true, 
         
         // Seconds - How long until an idle session expires and is no longer valid.
-        // maxAge: 30 * 24 * 60 * 60, // 30 days
+        maxAge: 10 * 24 * 60 * 60, // 10 days
 
         // Seconds - Throttle how frequently to write to database to extend a session.
         // Use it to limit write operations. Set to 0 to always update the database.
@@ -35,10 +42,10 @@ const options = {
     // https://next-auth.js.org/configuration/options#jwt
     jwt: {
         // A secret to use for key generation (you should set this explicitly)
-        secret: 'INp8IvdIyeMcoGAgFGoA61DdBglwwSqnXJZkgz8PSnw', 
+        secret: process.env.JWT_SECRET, 
         
         // Set to true to use encryption (default: false)
-        // encryption: true,
+        encryption: true,
 
         // You can define your own encode/decode functions for signing and encryption
         // if you want to override the default behaviour.

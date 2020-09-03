@@ -1,14 +1,10 @@
 import React from 'react'
-import { AppBar, Paper } from '@material-ui/core'
-import Link from '../../components/nextjs/link'
-import Head from '../../components/base/head'
-import { Button }  from '@material-ui/core'
+import Head from '../../components/base/head';
 import { Typography } from '@material-ui/core';
-import { Toolbar } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import { useTheme } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
+//@ts-ignore
+import { useSession } from 'next-auth/client';
 import PostOfficeLayout from '../../components/layouts/postofficelayout'
 
 const useStyles = makeStyles((theme) => ({
@@ -37,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
   const classes = useStyles();
+  const [ session, loading ] = useSession()
 
 return (
   <>
@@ -158,6 +155,15 @@ return (
           accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
       </Grid>
+
+     
+
+  
+<>
+    {session && <p>Signed in as {session.user.email}</p>}
+    {!session && <p><a href="/api/auth/signin">Sign in</a></p>}
+  </>
+
     </>
 )};
 

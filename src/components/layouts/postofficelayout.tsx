@@ -103,9 +103,9 @@ const useStyles = makeStyles((theme) => ({
               <img style={page_image} src="/postofficelogo.png" alt="my image" />
             </div>
             <div className={classes.tabs}>
-              <Tabs value={value}  onChange={handleChange} aria-label="simple tabs example">
-                <Tab label="Home" className={classes.hover} underline="none" {...a11yProps(0)} component={Link} href="/post-office"/>
-                <Tab label="FAQ" className={classes.hover} underline="none" {...a11yProps(1)} component={Link} href="/post-office/faq"/>
+              <Tabs value={value}  onChange={handleChange} aria-label="simple tabs example" textColor="inherit">
+                <Tab label="Home" className={classes.hover} underline="none" {...a11yProps(0)} component={Link} href="/post-office" textColor="inherit"/>
+                <Tab label="FAQ" className={classes.hover} underline="none" {...a11yProps(1)} component={Link} href="/post-office/faq" textColor="inherit"/>
               </Tabs>
             </div>  
             </Toolbar>
