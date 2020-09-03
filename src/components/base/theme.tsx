@@ -1,7 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import React, { useState } from 'react';
-import { dark } from '@material-ui/core/styles/createPalette';
-import { grey } from '@material-ui/core/colors';
+import { useState } from 'react';
 import { blue } from '@material-ui/core/colors';
 
 const lightTheme = {

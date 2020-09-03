@@ -11,20 +11,7 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
-  },
-  appBar: {
-    top: 56, 
-   [`${theme.breakpoints.up('xs')} and (orientation: landscape)`]: { 
-    top: 48, 
-   }, 
-   [theme.breakpoints.up('sm')]: { 
-    top: 64, 
-   },
-    backgroundColor: theme.palette.primary.main,
-  },
-  title:{
-    backgroundColor: theme.palette.primary.main,
-  },
+  }
 }));
 
 

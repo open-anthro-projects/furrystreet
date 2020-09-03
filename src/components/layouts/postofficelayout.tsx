@@ -6,7 +6,6 @@ import React, { ReactNode } from 'react'
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Link from '../nextjs/link';
-import { RSA_PSS_SALTLEN_AUTO } from 'constants';
 
 type Props = {
   children?: ReactNode
