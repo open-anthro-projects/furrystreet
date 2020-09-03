@@ -104,8 +104,8 @@ const useStyles = makeStyles((theme) => ({
             </div>
             <div className={classes.tabs}>
               <Tabs value={value}  onChange={handleChange} aria-label="simple tabs example" textColor="inherit">
-                <Tab label="Home" className={classes.hover} underline="none" {...a11yProps(0)} component={Link} href="/post-office"/>
-                <Tab label="FAQ" className={classes.hover} underline="none" {...a11yProps(1)} component={Link} href="/post-office/faq"/>
+                <Tab label="Home" className={classes.hover} underline="none" {...a11yProps(0)} component={Link} href="/post-office" color="inherit"/>
+                <Tab label="FAQ" className={classes.hover} underline="none" {...a11yProps(1)} component={Link} href="/post-office/faq" color="inherit"/>
               </Tabs>
             </div>  
             </Toolbar>
