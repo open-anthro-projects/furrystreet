@@ -94,7 +94,7 @@ const useStyles = makeStyles((theme) => ({
     className={classes.container}>
       <Toolbar/>
       <Grid item className={classes.cover_image}>
-          <img style={cover_image} src="/test.jpg" alt="my image" />
+          <img style={cover_image} src="/test.png" alt="my image" />
         </Grid>
         <AppBar position="sticky" className={classes.appBar} elevation={0} color="default">
             <Toolbar className={classes.toolbar}> 
