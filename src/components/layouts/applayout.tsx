@@ -2,13 +2,13 @@ import { AppBar, formatMs } from '@material-ui/core'
 import { Toolbar } from '@material-ui/core'
 import IconButton from '@material-ui/core/IconButton';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { Typography } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import { makeStyles } from '@material-ui/core/styles';
 import React, { ReactNode } from 'react'
-import {Switch , FormControlLabel} from '@material-ui/core';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
+//@ts-ignore
+import { signIn, signOut, useSession} from 'next-auth/client'
 
 const drawerWidth = 240;
 
@@ -54,6 +54,7 @@ const image = {
 
   const AppLayout = ({ themeSwitch,children }: Props) => {
     const classes = useStyles();
+    const [ session, loading ] = useSession()
    
     const [state, setState] = React.useState({
       left: false,
@@ -79,6 +80,14 @@ const image = {
           </IconButton>
             <img style={image} src="/logo.png" alt="my image" />
           </section>
+          {!session && <>
+            Not signed in <br/>
+            <button onClick={signIn}>Sign in</button>
+            </>}
+            {session && <>
+            Signed in as {session.user.email} <br/>
+            <button onClick={signOut}>Sign out</button>
+            </>}
           <IconButton edge="start" color="inherit" aria-label="switch" onClick={themeSwitch}>
             <Brightness4Icon />
           </IconButton>
