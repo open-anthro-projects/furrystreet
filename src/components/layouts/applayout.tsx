@@ -9,6 +9,15 @@ import React, { ReactNode } from 'react'
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 //@ts-ignore
 import { signIn, signOut, useSession} from 'next-auth/client'
+import Button from '@material-ui/core/Button';
+import Avatar from '@material-ui/core/Avatar';
+import { blue } from '@material-ui/core/colors';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Grow from '@material-ui/core/Grow';
+import Paper from '@material-ui/core/Paper';
+import Popper from '@material-ui/core/Popper';
+import MenuItem from '@material-ui/core/MenuItem';
+import MenuList from '@material-ui/core/MenuList';
 
 const drawerWidth = 240;
 
@@ -45,6 +54,21 @@ const useStyles = makeStyles((theme) => ({
   menuSide: {
    flexGrow: 1
   },
+  signin: {
+    backgroundColor: blue[500],
+    width: theme.spacing(3),
+    height: theme.spacing(3),
+    marginRight: theme.spacing(1),
+  },
+  avatar:{
+    width: theme.spacing(4),
+    height: theme.spacing(4),
+  },
+  button:{
+    minWidth: 'initial',
+    borderRadius: '50%',
+    padding: "8px 8px",
+  }
 }));
 
 const image = {
@@ -55,10 +79,49 @@ const image = {
   const AppLayout = ({ themeSwitch,children }: Props) => {
     const classes = useStyles();
     const [ session, loading ] = useSession()
+    const [open, setOpen] = React.useState(false);
+    const anchorRef = React.useRef<HTMLButtonElement>(null);
    
     const [state, setState] = React.useState({
       left: false,
     });
+
+    const handleToggle = () => {
+      setOpen((prevOpen) => !prevOpen);
+    };
+
+    const handleClose = (event: React.MouseEvent<EventTarget>) => {
+      if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
+        return;
+      }
+  
+      setOpen(false);
+    };
+
+    const handleLogout = (event: React.MouseEvent<EventTarget>) => {
+      if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
+        return;
+      }
+      setOpen(false);
+      signOut();
+    };
+  
+    function handleListKeyDown(event: React.KeyboardEvent) {
+      if (event.key === 'Tab') {
+        event.preventDefault();
+        setOpen(false);
+      }
+    }
+  
+    // return focus to the button when we transitioned from !open -> open
+    const prevOpen = React.useRef(open);
+    React.useEffect(() => {
+      if (prevOpen.current === true && open === false) {
+        anchorRef.current!.focus();
+      }
+  
+      prevOpen.current = open;
+    }, [open]);
   
     const toggleDrawer = (anchor: string, open: boolean) => (event:any) => {
       if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -80,17 +143,41 @@ const image = {
           </IconButton>
             <img style={image} src="/logo.png" alt="my image" />
           </section>
-          {!session && <>
-            Not signed in <br/>
-            <button onClick={signIn}>Sign in</button>
-            </>}
-            {session && <>
-            Signed in as {session.user.email} <br/>
-            <button onClick={signOut}>Sign out</button>
-            </>}
-          <IconButton edge="start" color="inherit" aria-label="switch" onClick={themeSwitch}>
+          <IconButton edge="start" color="inherit" aria-label="switch" className={classes.menuButton} onClick={themeSwitch}>
             <Brightness4Icon />
           </IconButton>
+          {!session && <>
+            <Button variant="outlined" color="secondary" onClick={signIn} >
+            <Avatar className={classes.signin}/> Sign in
+            </Button>
+            </>}
+            {session && <>
+              <Button
+              className={classes.button}
+          ref={anchorRef}
+          aria-controls={open ? 'menu-list-grow' : undefined}
+          aria-haspopup="true"
+          onClick={handleToggle}
+        >
+              <Avatar srcSet={session.user.image} className={classes.avatar}/>
+              </Button>
+              <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal placement="bottom-end">
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+            >
+              <Paper>
+                <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                    <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
+            </>}
         </Toolbar>
       </AppBar>
           <SwipeableDrawer
