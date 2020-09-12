@@ -18,6 +18,8 @@ import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+
 
 const drawerWidth = 240;
 
@@ -81,6 +83,7 @@ const image = {
     const [ session, loading ] = useSession()
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef<HTMLButtonElement>(null);
+    const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
    
     const [state, setState] = React.useState({
       left: false,
@@ -141,7 +144,7 @@ const image = {
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={toggleDrawer('left',!state['left'])}>
             <MenuIcon />
           </IconButton>
-            <img style={image} src="/logo.png" alt="my image" />
+            <img style={image} src="/logo5.webp" alt="my image" />
           </section>
           <IconButton edge="start" color="inherit" aria-label="switch" className={classes.menuButton} onClick={themeSwitch}>
             <Brightness4Icon />
@@ -170,7 +173,7 @@ const image = {
               <Paper>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                    <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                    <MenuItem onClick={handleLogout}> <ExitToAppIcon/> Logout</MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
@@ -189,13 +192,15 @@ const image = {
             classes={{
               paper: classes.drawerPaper,
             }}
+            disableBackdropTransition={!iOS} 
+            disableDiscovery={iOS}
           >
             <AppBar position="sticky" className={classes.appBar} elevation={0} color="default">
         <Toolbar> 
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={toggleDrawer('left',!state['left'])}>
             <MenuIcon />
           </IconButton>
-          <img style={image} src="/logo.png" alt="my image" />
+          <img style={image} src="/logo5.webp" alt="my image" />
         </Toolbar>
       </AppBar>
        </SwipeableDrawer>
@@ -204,3 +209,5 @@ const image = {
     )};
     
   export default AppLayout;
+
+  

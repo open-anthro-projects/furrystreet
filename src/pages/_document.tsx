@@ -20,7 +20,7 @@ export default class MyDocument extends Document {
       div#__next,
       div#__next > div,
       div#__next > div > div {
-        height: fit-content;
+        height: initial;
     `}</style>
       </Html>
     );
