@@ -19,7 +19,7 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-
+import { useRouter } from 'next/router'
 
 const drawerWidth = 240;
 
@@ -84,6 +84,7 @@ const image = {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef<HTMLButtonElement>(null);
     const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const router = useRouter() 
    
     const [state, setState] = React.useState({
       left: false,
@@ -149,6 +150,7 @@ const image = {
           <IconButton edge="start" color="inherit" aria-label="switch" className={classes.menuButton} onClick={themeSwitch}>
             <Brightness4Icon />
           </IconButton>
+          {!router.pathname.includes("/auth/") && <>
           {!session && <>
             <Button variant="outlined" color="secondary" onClick={signIn} >
             <Avatar className={classes.signin}/> Sign in
@@ -180,7 +182,7 @@ const image = {
             </Grow>
           )}
         </Popper>
-            </>}
+            </>}</>}
         </Toolbar>
       </AppBar>
           <SwipeableDrawer
