@@ -145,7 +145,7 @@ const image = {
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={toggleDrawer('left',!state['left'])}>
             <MenuIcon />
           </IconButton>
-            <img style={image} src="/logo5.webp" alt="my image" />
+            <img style={image} src="/logo6.webp" alt="my image" />
           </section>
           <IconButton edge="start" color="inherit" aria-label="switch" className={classes.menuButton} onClick={themeSwitch}>
             <Brightness4Icon />
@@ -202,7 +202,7 @@ const image = {
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={toggleDrawer('left',!state['left'])}>
             <MenuIcon />
           </IconButton>
-          <img style={image} src="/logo5.webp" alt="my image" />
+          <img style={image} src="/logo6.webp" alt="my image" />
         </Toolbar>
       </AppBar>
        </SwipeableDrawer>

@@ -9,10 +9,10 @@ import { AppProps } from 'next/app';
 import { Provider } from 'next-auth/client';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [theme, toggleDarkTheme] = AppTheme();
+  const [appTheme, toggleDarkTheme] = AppTheme();
   //@ts-ignore
   const PageLayout = Component.Layout || DefaultLayout;
-  
+
 
   React.useEffect(() => {
     // Remove the server-side injected CSS.
@@ -21,19 +21,19 @@ function MyApp({ Component, pageProps }: AppProps) {
       jssStyles.parentElement!.removeChild(jssStyles);
     }
   }, []);
-    
 
-    return ( 
-      <ThemeProvider theme={theme}>
-        <Provider session={pageProps.session}>
-          <AppLayout themeSwitch={toggleDarkTheme}>
-            <PageLayout>
-              <Component {...pageProps}/>
-            </PageLayout>
-          </AppLayout>
-        </Provider>
-      </ThemeProvider>
-    );
+
+  return (
+    <ThemeProvider theme={appTheme}>
+      <Provider session={pageProps.session}>
+        <AppLayout themeSwitch={toggleDarkTheme}>
+          <PageLayout>
+            <Component {...pageProps} />
+          </PageLayout>
+        </AppLayout>
+      </Provider>
+    </ThemeProvider>
+  );
 
 }
 
@@ -65,14 +65,14 @@ export default function MyApp(props) {
       </Head>
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. *//*}
-        <CssBaseline />
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </React.Fragment>
-  );
+<CssBaseline />
+<Component {...pageProps} />
+</ThemeProvider>
+</React.Fragment>
+);
 }
 
 MyApp.propTypes = {
-  Component: PropTypes.elementType.isRequired,
-  pageProps: PropTypes.object.isRequired,
+Component: PropTypes.elementType.isRequired,
+pageProps: PropTypes.object.isRequired,
 };*/

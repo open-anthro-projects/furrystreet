@@ -1,5 +1,5 @@
-import { createMuiTheme } from '@material-ui/core/styles';
-import { useState } from 'react';
+import { createMuiTheme, Theme } from '@material-ui/core/styles';
+import { useState, useEffect } from 'react';
 import { blue } from '@material-ui/core/colors';
 
 const lightTheme = {
@@ -53,14 +53,15 @@ const dark2Theme = {
 export const AppTheme = () => {
   const [darkState, setDarkState] = useState(true);
   const palletType = darkState ? dark2Theme.palette : lightTheme.palette;
-  const darkTheme = createMuiTheme({
+  const theme = createMuiTheme({
     palette: palletType,
 
   });
+  
   const handleThemeChange = () => {
     setDarkState(!darkState);
   };
-  let tuple: [any, any];
-  tuple = [darkTheme, handleThemeChange];
+  let tuple: [Theme, any];
+  tuple = [theme, handleThemeChange];
   return tuple;
 }
