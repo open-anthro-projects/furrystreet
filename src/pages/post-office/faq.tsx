@@ -3,37 +3,27 @@ import PostOfficeLayout from '../../components/layouts/postofficelayout'
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 //@ts-ignore
-import { signIn, signOut, useSession} from 'next-auth/client'
 
 const useStyles = makeStyles((theme) => ({
-    content: {
-      bottom: 0,
-      flexGrow: 1,
-      padding: theme.spacing(3),
-    }
-  }));
+  content: {
+    bottom: 0,
+    flexGrow: 1,
+    padding: theme.spacing(3),
+  }
+}));
 
 const Faq = () => {
-    const classes = useStyles();
-    const [ session, loading ] = useSession()
-    return (
-      <>
-        <Head title="FAQ"></Head>
-        <Grid item className={classes.content}>
-            <p>This is the Faq page</p>
-            {!session && <>
-            Not signed in <br/>
-            <button onClick={signIn}>Sign in</button>
-            </>}
-            {session && <>
-            Signed in as {session.user.email} <br/>
-            <button onClick={signOut}>Sign out</button>
-    </>}
-        </Grid>
-      </>
-    );
-  }
+  const classes = useStyles();
+  return (
+    <>
+      <Head title="FAQ"></Head>
+      <Grid item className={classes.content}>
+        <p>This is the Faq page</p>
+      </Grid>
+    </>
+  );
+}
 
-  Faq.Layout = PostOfficeLayout;
+Faq.Layout = PostOfficeLayout;
 
-  export default Faq;
+export default Faq;

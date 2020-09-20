@@ -2,17 +2,19 @@ import React from 'react';
 import AppLayout from '../../src/components/layouts/applayout';
 import PropTypes from 'prop-types';
 import { AppTheme } from '../components/base/theme'
+import Head from '../components/base/head'
 import { ThemeProvider } from '@material-ui/core/styles';
 import DefaultLayout from '../components/layouts/defaultlayout';
 import { AppProps } from 'next/app';
 //@ts-ignore
 import { Provider } from 'next-auth/client';
+import { CookiesProvider } from 'react-cookie';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [theme, toggleDarkTheme] = AppTheme();
+  const [appTheme, toggleDarkTheme] = AppTheme();
   //@ts-ignore
   const PageLayout = Component.Layout || DefaultLayout;
-  
+
 
   React.useEffect(() => {
     // Remove the server-side injected CSS.
@@ -21,19 +23,22 @@ function MyApp({ Component, pageProps }: AppProps) {
       jssStyles.parentElement!.removeChild(jssStyles);
     }
   }, []);
-    
 
-    return ( 
-      <ThemeProvider theme={theme}>
+
+  return (
+    <CookiesProvider>
+      <ThemeProvider theme={appTheme}>
+        <Head theme={appTheme}></Head>
         <Provider session={pageProps.session}>
           <AppLayout themeSwitch={toggleDarkTheme}>
             <PageLayout>
-              <Component {...pageProps}/>
+              <Component {...pageProps} />
             </PageLayout>
           </AppLayout>
         </Provider>
       </ThemeProvider>
-    );
+    </CookiesProvider>
+  );
 
 }
 
@@ -65,14 +70,14 @@ export default function MyApp(props) {
       </Head>
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. *//*}
-        <CssBaseline />
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </React.Fragment>
-  );
+<CssBaseline />
+<Component {...pageProps} />
+</ThemeProvider>
+</React.Fragment>
+);
 }
 
 MyApp.propTypes = {
-  Component: PropTypes.elementType.isRequired,
-  pageProps: PropTypes.object.isRequired,
+Component: PropTypes.elementType.isRequired,
+pageProps: PropTypes.object.isRequired,
 };*/

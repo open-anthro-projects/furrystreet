@@ -28,6 +28,6 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx", "src/pages/auth/email-signin.js", "src/__tests__/_app.test.js", "src/__tests__/_app.test.js"
   ]
 }

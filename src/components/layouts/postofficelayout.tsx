@@ -94,12 +94,12 @@ const useStyles = makeStyles((theme) => ({
     className={classes.container}>
       <Toolbar/>
       <Grid item className={classes.cover_image}>
-          <img style={cover_image} src="/test.png" alt="my image" />
+          <img style={cover_image} src="/test.webp" alt="my image" />
         </Grid>
         <AppBar position="sticky" className={classes.appBar} elevation={0} color="default">
             <Toolbar className={classes.toolbar}> 
             <div className={classes.title}>
-              <img style={page_image} src="/postofficelogo.png" alt="my image" />
+              <img style={page_image} src="/postofficelogo.webp" alt="my image" />
             </div>
             <div className={classes.tabs}>
               <Tabs value={value}  onChange={handleChange} aria-label="simple tabs example" textColor="inherit">

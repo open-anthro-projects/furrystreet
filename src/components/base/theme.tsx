@@ -1,6 +1,8 @@
-import { createMuiTheme } from '@material-ui/core/styles';
-import { useState } from 'react';
+import { createMuiTheme, Theme } from '@material-ui/core/styles';
+import { useState, useEffect } from 'react';
 import { blue } from '@material-ui/core/colors';
+import { useCookies } from 'react-cookie';
+import Cookies from 'universal-cookie';
 
 const lightTheme = {
   palette: {
@@ -51,16 +53,21 @@ const dark2Theme = {
 }*/
 
 export const AppTheme = () => {
-  const [darkState, setDarkState] = useState(true);
+  const [cookies, setCookie] = useCookies(['furrystreet-settings']);
+  let cookieTheme = (cookies['furrystreet-settings'] == 'true') ? true : false;
+  const [darkState, setDarkState] = useState(cookieTheme);
+  useEffect(() => {
+    setCookie('furrystreet-settings', darkState, { path: '/' });
+  }, [darkState])
   const palletType = darkState ? dark2Theme.palette : lightTheme.palette;
-  const darkTheme = createMuiTheme({
+  const theme = createMuiTheme({
     palette: palletType,
-
   });
+
   const handleThemeChange = () => {
     setDarkState(!darkState);
   };
-  let tuple: [any, any];
-  tuple = [darkTheme, handleThemeChange];
+  let tuple: [Theme, any?];
+  tuple = [theme, handleThemeChange];
   return tuple;
 }
