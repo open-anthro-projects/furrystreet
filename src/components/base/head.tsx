@@ -1,7 +1,8 @@
 import React from 'react'
 import NextHead from 'next/head'
-import { string } from 'prop-types'
+import { string , object } from 'prop-types'
 import { AppTheme } from './theme'
+import { Theme } from "@material-ui/core";
 
 const defaultDescription = ''
 const defaultOGURL = ''
@@ -11,11 +12,11 @@ type Props = {
   title?: string,
   description?: string,
   url?: string,
-  ogImage?: string
+  ogImage?: string,
+  theme?: Theme,
 }
 
 const Head = (props: Props) => {
-  const [theme, toggleDarkTheme] = AppTheme();
 
   return (
     <NextHead>
@@ -26,7 +27,7 @@ const Head = (props: Props) => {
         content={props.description || defaultDescription}
       />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta name="theme-color" content={theme.palette.primary.main} />
+      <meta name="theme-color" content={props?.theme?.palette.primary.main} />
       <link rel="icon" sizes="192x192" href="/static/touch-icon.png" />
       <link rel="apple-touch-icon" href="/static/touch-icon.png" />
       <link rel="mask-icon" href="/static/favicon-mask.svg" color="#49B882" />
@@ -51,7 +52,8 @@ Head.propTypes = {
   title: string,
   description: string,
   url: string,
-  ogImage: string
+  ogImage: string,
+  theme: object,
 }
 
 export default Head

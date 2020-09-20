@@ -2,11 +2,13 @@ import React from 'react';
 import AppLayout from '../../src/components/layouts/applayout';
 import PropTypes from 'prop-types';
 import { AppTheme } from '../components/base/theme'
+import Head from '../components/base/head'
 import { ThemeProvider } from '@material-ui/core/styles';
 import DefaultLayout from '../components/layouts/defaultlayout';
 import { AppProps } from 'next/app';
 //@ts-ignore
 import { Provider } from 'next-auth/client';
+import { CookiesProvider } from 'react-cookie';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [appTheme, toggleDarkTheme] = AppTheme();
@@ -24,15 +26,18 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 
   return (
-    <ThemeProvider theme={appTheme}>
-      <Provider session={pageProps.session}>
-        <AppLayout themeSwitch={toggleDarkTheme}>
-          <PageLayout>
-            <Component {...pageProps} />
-          </PageLayout>
-        </AppLayout>
-      </Provider>
-    </ThemeProvider>
+    <CookiesProvider>
+      <ThemeProvider theme={appTheme}>
+        <Head theme={appTheme}></Head>
+        <Provider session={pageProps.session}>
+          <AppLayout themeSwitch={toggleDarkTheme}>
+            <PageLayout>
+              <Component {...pageProps} />
+            </PageLayout>
+          </AppLayout>
+        </Provider>
+      </ThemeProvider>
+    </CookiesProvider>
   );
 
 }
