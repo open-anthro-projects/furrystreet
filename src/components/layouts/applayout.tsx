@@ -8,7 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import React, { ReactNode } from 'react'
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 //@ts-ignore
-import { signIn, signOut, useSession} from 'next-auth/client'
+import { signIn, signOut, useSession } from 'next-auth/client'
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
 import { blue } from '@material-ui/core/colors';
@@ -20,11 +20,17 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useRouter } from 'next/router'
+import { useCookies } from 'react-cookie';
+import Head from '../../components/base/head'
+import { ThemeProvider } from '@material-ui/core/styles';
+import { AppTheme } from '../../components/base/theme'
+import ThemeSwitch from './themeswitch'
+import { loadGetInitialProps } from 'next/dist/next-server/lib/utils';
+
 
 const drawerWidth = 240;
 
 type Props = {
-  themeSwitch: any,
   children?: ReactNode
 }
 
@@ -54,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(1),
   },
   menuSide: {
-   flexGrow: 1
+    flexGrow: 1
   },
   signin: {
     backgroundColor: blue[500],
@@ -62,11 +68,11 @@ const useStyles = makeStyles((theme) => ({
     height: theme.spacing(3),
     marginRight: theme.spacing(1),
   },
-  avatar:{
+  avatar: {
     width: theme.spacing(4),
     height: theme.spacing(4),
   },
-  button:{
+  button: {
     minWidth: 'initial',
     borderRadius: '50%',
     padding: "8px 8px",
@@ -78,138 +84,150 @@ const image = {
   "verticalAlign": "middle",
 }
 
-  const AppLayout = ({ themeSwitch,children }: Props) => {
-    const classes = useStyles();
-    const [ session, loading ] = useSession()
-    const [open, setOpen] = React.useState(false);
-    const anchorRef = React.useRef<HTMLButtonElement>(null);
-    const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
-    const router = useRouter() 
-   
-    const [state, setState] = React.useState({
-      left: false,
-    });
+const AppLayout = ({ children }: Props) => {
+  const [cookies, setCookie] = useCookies(['furrystreet_settings']);
+  const [appTheme, toggleDarkTheme, componentMounted] = AppTheme();
+  const classes = useStyles();
+  const [session, loading] = useSession()
+  const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef<HTMLButtonElement>(null);
+  const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const router = useRouter()
 
-    const handleToggle = () => {
-      setOpen((prevOpen) => !prevOpen);
-    };
+  const [state, setState] = React.useState({
+    left: false,
+  });
 
-    const handleClose = (event: React.MouseEvent<EventTarget>) => {
-      if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
-        return;
-      }
-  
-      setOpen(false);
-    };
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
 
-    const handleLogout = (event: React.MouseEvent<EventTarget>) => {
-      if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
-        return;
-      }
-      setOpen(false);
-      signOut();
-    };
-  
-    function handleListKeyDown(event: React.KeyboardEvent) {
-      if (event.key === 'Tab') {
-        event.preventDefault();
-        setOpen(false);
-      }
+  const handleClose = (event: React.MouseEvent<EventTarget>) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
+      return;
     }
-  
-    // return focus to the button when we transitioned from !open -> open
-    const prevOpen = React.useRef(open);
-    React.useEffect(() => {
-      if (prevOpen.current === true && open === false) {
-        anchorRef.current!.focus();
-      }
-  
-      prevOpen.current = open;
-    }, [open]);
-  
-    const toggleDrawer = (anchor: string, open: boolean) => (event:any) => {
-      if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-        return;
-      }
-  
-      setState({ ...state, [anchor]: open });
-    };
 
-    return (
-   
+    setOpen(false);
+  };
+
+  const handleLogout = (event: React.MouseEvent<EventTarget>) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
+      return;
+    }
+    setOpen(false);
+    signOut();
+  };
+
+  function handleListKeyDown(event: React.KeyboardEvent) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      setOpen(false);
+    }
+  }
+
+  // return focus to the button when we transitioned from !open -> open
+  const prevOpen = React.useRef(open);
+  React.useEffect(() => {
+    if (prevOpen.current === true && open === false) {
+      anchorRef.current!.focus();
+    }
+
+    prevOpen.current = open;
+  }, [open]);
+
+  const toggleDrawer = (anchor: string, open: boolean) => (event: any) => {
+    if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
+  };
+
+  
+  if (!componentMounted) {
+    return <div />
+  };
+
+
+  return (
+    <ThemeSwitch>
+    <ThemeProvider theme={appTheme}>
+      <Head theme={appTheme}></Head>
       <div className={classes.root}>
-      <CssBaseline/>
-      <AppBar position="fixed" className={classes.appBar} elevation={0} color="default">
-        <Toolbar>
-          <section className={classes.menuSide}> 
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={toggleDrawer('left',!state['left'])}>
-            <MenuIcon />
-          </IconButton>
-            <img style={image} src="/logo6.webp" alt="my image" />
-          </section>
-          <IconButton edge="start" color="inherit" aria-label="switch" className={classes.menuButton} onClick={themeSwitch}>
-            <Brightness4Icon />
-          </IconButton>
-          {!router.pathname.includes("/auth/") && <>
-          {!session && <>
-            <Button variant="outlined" color="secondary" onClick={signIn} >
-            <Avatar className={classes.signin}/> Sign in
-            </Button>
-            </>}
-            {session && <>
-              <Button
-              className={classes.button}
-          ref={anchorRef}
-          aria-controls={open ? 'menu-list-grow' : undefined}
-          aria-haspopup="true"
-          onClick={handleToggle}
+        <CssBaseline />
+        <AppBar position="fixed" className={classes.appBar} elevation={0} color="default">
+          <Toolbar>
+            <section className={classes.menuSide}>
+              <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={toggleDrawer('left', !state['left'])}>
+                <MenuIcon />
+              </IconButton>
+              <img style={image} src="/logo6.webp" alt="my image" />
+            </section>
+            <IconButton edge="start" color="inherit" aria-label="switch" className={classes.menuButton} onClick={toggleDarkTheme}>
+              <Brightness4Icon />
+            </IconButton>
+            {!router.pathname.includes("/auth/") && <>
+              {!session && <>
+                <Button variant="outlined" color="secondary" onClick={signIn} >
+                  <Avatar className={classes.signin} /> Sign in {cookies.furrystreet_settings}
+                </Button>
+              </>}
+              {session && <>
+                <Button
+                  className={classes.button}
+                  ref={anchorRef}
+                  aria-controls={open ? 'menu-list-grow' : undefined}
+                  aria-haspopup="true"
+                  onClick={handleToggle}
+                >
+                  <Avatar srcSet={session.user.image} className={classes.avatar} />
+                </Button>
+                <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal placement="bottom-end">
+                  {({ TransitionProps, placement }) => (
+                    <Grow
+                      {...TransitionProps}
+                      style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+                    >
+                      <Paper>
+                        <ClickAwayListener onClickAway={handleClose}>
+                          <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                            <MenuItem onClick={handleLogout}> <ExitToAppIcon /> Logout</MenuItem>
+                          </MenuList>
+                        </ClickAwayListener>
+                      </Paper>
+                    </Grow>
+                  )}
+                </Popper>
+              </>}</>}
+          </Toolbar>
+        </AppBar>
+        <SwipeableDrawer
+          anchor={'left'}
+          open={state['left']}
+          onClose={toggleDrawer('left', false)}
+          onOpen={toggleDrawer('left', true)}
+          className={classes.drawer}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+          disableBackdropTransition={!iOS}
+          disableDiscovery={iOS}
         >
-              <Avatar srcSet={session.user.image} className={classes.avatar}/>
-              </Button>
-              <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal placement="bottom-end">
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-            >
-              <Paper>
-                <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                    <MenuItem onClick={handleLogout}> <ExitToAppIcon/> Logout</MenuItem>
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
-            </>}</>}
-        </Toolbar>
-      </AppBar>
-          <SwipeableDrawer
-            anchor={'left'}
-            open={state['left']}
-            onClose={toggleDrawer('left', false)}
-            onOpen={toggleDrawer('left', true)}
-            className={classes.drawer}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            disableBackdropTransition={!iOS} 
-            disableDiscovery={iOS}
-          >
-            <AppBar position="sticky" className={classes.appBar} elevation={0} color="default">
-        <Toolbar> 
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={toggleDrawer('left',!state['left'])}>
-            <MenuIcon />
-          </IconButton>
-          <img style={image} src="/logo6.webp" alt="my image" />
-        </Toolbar>
-      </AppBar>
-       </SwipeableDrawer>
+          <AppBar position="sticky" className={classes.appBar} elevation={0} color="default">
+            <Toolbar>
+              <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={toggleDrawer('left', !state['left'])}>
+                <MenuIcon />
+              </IconButton>
+              <img style={image} src="/logo6.webp" alt="my image" />
+            </Toolbar>
+          </AppBar>
+        </SwipeableDrawer>
         {children}
       </div>
-    )};
-    
-  export default AppLayout;
+    </ThemeProvider>
+    </ThemeSwitch>
+  )
+};
 
-  
+export default AppLayout;
+

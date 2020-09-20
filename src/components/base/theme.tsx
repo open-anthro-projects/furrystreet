@@ -52,22 +52,59 @@ const dark2Theme = {
   return [theme, toggleDarkTheme]
 }*/
 
+
+
 export const AppTheme = () => {
-  const [cookies, setCookie] = useCookies(['furrystreet-settings']);
-  let cookieTheme = (cookies['furrystreet-settings'] == 'true') ? true : false;
-  const [darkState, setDarkState] = useState(cookieTheme);
+  const [theme, setTheme] = useState('light');
+  const [componentMounted, setComponentMounted] = useState(false);
+  const setMode = (mode: any) => {
+    window.localStorage.setItem('theme', mode)
+    setTheme(mode)
+  };
+
+  const toggleTheme = () => {
+    if (theme === 'light') {
+      setMode('dark')
+    } else {
+      setMode('light')
+    }
+  };
+
+  const palletType = (theme === 'light') ? dark2Theme.palette : lightTheme.palette;
+  
+
   useEffect(() => {
-    setCookie('furrystreet-settings', darkState, { path: '/' });
-  }, [darkState])
-  const palletType = darkState ? dark2Theme.palette : lightTheme.palette;
-  const theme = createMuiTheme({
+    const localTheme = window.localStorage.getItem('theme');
+    window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && !localTheme ?
+      setMode('dark') :
+      localTheme ?
+        setTheme(localTheme) :
+        setMode('light');
+    setComponentMounted(true);
+  }, []);
+
+  const themeM = createMuiTheme({
     palette: palletType,
   });
 
-  const handleThemeChange = () => {
-    setDarkState(!darkState);
-  };
-  let tuple: [Theme, any?];
-  tuple = [theme, handleThemeChange];
+  let tuple: [Theme, any? , any?];
+  tuple = [themeM, toggleTheme, componentMounted];
+
   return tuple;
-}
+};
+
+//export const AppTheme = () => {
+//  const [darkState, setDarkState] = useState(true);
+//  console.log(darkState)
+//  const palletType = darkState ? dark2Theme.palette : lightTheme.palette;
+//  const theme = createMuiTheme({
+//    palette: palletType,
+ // });
+////
+//  const handleThemeChange = () => {
+//    setDarkState(!darkState);
+////  };
+//let tuple: [Theme, any?];
+//  tuple = [theme, handleThemeChange];
+//  return tuple;
+//}
