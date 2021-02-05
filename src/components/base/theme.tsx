@@ -1,8 +1,6 @@
 import { createMuiTheme, Theme } from '@material-ui/core/styles';
 import { useState, useEffect } from 'react';
 import { blue } from '@material-ui/core/colors';
-import { useCookies } from 'react-cookie';
-import Cookies from 'universal-cookie';
 
 const lightTheme = {
   palette: {
@@ -70,16 +68,14 @@ export const AppTheme = () => {
     }
   };
 
-  const palletType = (theme === 'light') ? dark2Theme.palette : lightTheme.palette;
+  const palletType = (theme === 'light') ? lightTheme.palette : dark2Theme.palette;
   
 
   useEffect(() => {
     const localTheme = window.localStorage.getItem('theme');
     window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && !localTheme ?
       setMode('dark') :
-      localTheme ?
-        setTheme(localTheme) :
-        setMode('light');
+      localTheme ? localTheme !== 'light' && localTheme !== 'dark' ? setMode('light') : setTheme(localTheme) : setMode('light');
     setComponentMounted(true);
   }, []);
 

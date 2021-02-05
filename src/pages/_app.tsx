@@ -5,10 +5,12 @@ import DefaultLayout from '../components/layouts/defaultlayout';
 import { AppProps } from 'next/app';
 //@ts-ignore
 import { Provider } from 'next-auth/client';
-import { CookiesProvider } from 'react-cookie';
+import { AppTheme } from '../components/base/theme'
+import { ThemeProvider } from '@material-ui/core/styles';
+import Head from '../components/base/head'
 
 function MyApp({ Component, pageProps }: AppProps) {
-
+  const [appTheme, toggleDarkTheme, componentMounted] = AppTheme();
 
 
 
@@ -24,17 +26,22 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
   }, []);
 
+  if (!componentMounted) {
+    return <div />
+  };
+
 
   return (
-    <CookiesProvider>
-        <Provider session={pageProps.session}>
-          <AppLayout>
-            <PageLayout>
-              <Component {...pageProps} />
-            </PageLayout>
-          </AppLayout>
-        </Provider>
-    </CookiesProvider>
+    <ThemeProvider theme={appTheme}>
+      <Head theme={appTheme}></Head>
+      <Provider session={pageProps.session}>
+        <AppLayout themeSwitch={toggleDarkTheme}>
+          <PageLayout>
+            <Component {...pageProps} />
+          </PageLayout>
+        </AppLayout>
+      </Provider>
+    </ThemeProvider>
   );
 
 }
